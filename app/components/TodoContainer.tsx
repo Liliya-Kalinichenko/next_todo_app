@@ -21,11 +21,11 @@ const TodoBox= styled(Box, {
 }))
 
 
-const TodoContainer = (props: {children: ReactNode}) => {
+const TodoContainer = ({children}: {children: ReactNode}) => {
 
   return (
     <TodoBox>
-      {props.children}
+      {children}
     </TodoBox>
   )
 }

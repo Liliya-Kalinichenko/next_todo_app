@@ -13,10 +13,10 @@ const MainContainer = styled(Container, {
   alignItems: 'center',
 }))
 
-function Main(props: {children: ReactNode}) {
+function Main({children}: {children: ReactNode}) {
   return (
     <MainContainer>
-      {props.children}
+      {children}
     </MainContainer>
   )
 }

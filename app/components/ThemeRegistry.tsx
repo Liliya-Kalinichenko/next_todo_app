@@ -3,8 +3,8 @@ import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
 import React from 'react';
-import { theme } from '../theme/theme';
 import { CssBaseline } from '@mui/material';
+import { theme } from '../theme/theme';
 
 export default function ThemeRegistry({ children } : {children: React.ReactNode}) {
 
@@ -51,15 +51,16 @@ export default function ThemeRegistry({ children } : {children: React.ReactNode}
     );
   });
 
+
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {children}
+          {children}
       </ThemeProvider>
     </CacheProvider>
   );
-}
 
+  }
 
 

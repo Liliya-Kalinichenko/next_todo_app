@@ -3,21 +3,52 @@
 @tailwind utilities; */
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --main-background: linear-gradient(to right, #f68084 0%, #faebd7 100%);
+  --main-text: #243251;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --main-background: linear-gradient(to right, #09203f 0%, #3c646e 100%);
+    --modal-background: #314758a8;
+    --cell-background: linear-gradient(120deg, #a6c0fe 50%, #f68084 100%);
+    --blue-background: #b0c4de;
+    --button-background: linear-gradient(15deg, #13547a 0%, #64a29b 100%);
+    --blue: #a6c0fe;
+    --dark-blue: #243251;
+    --main-text: #faebd7;
+    --pink: #f68084;
+    --green: #64a29b;
+    --dark-pink: #de4465c3;
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  color: (var(--main-text));
+  background: var(--main-background);
   height: 100vh;
 }
 
+.shine {
+  animation: shine 3s ease infinite;
+}
+
+@property --a {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 45deg;
+}
+.button {
+  --a: 15deg;
+  background: linear-gradient(var(--a), #13547a 0%, #64a29b 100%);
+  transition: --a 2s!important;
+
+}
+.button:hover {
+  --a: 120deg;
+}
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}

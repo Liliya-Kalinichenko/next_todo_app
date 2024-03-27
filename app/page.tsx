@@ -1,30 +1,23 @@
 import { Typography } from "@mui/material";
-import AddTodo from "@/app/components/AddTodo";
-import TodoList from "@/app/components/TodoList";
 import React from "react";
 import Main from "./components/MainContainer";
-import TodoContainer from "./components/TodoContainer";
-import { getData } from "./actions/todoActions";
+import Hero from "./components/Hero/Hero";
+import App from "./components/App";
 
-
-
- const Home = async () => {
-
-const todos = await getData();
-
+ const Home = () => {
   return (
-    <Main>
-      <Typography mt={5} variant="h1" className="shine">
-        Todo App
-      </Typography>
-
-      <TodoContainer>
-        <AddTodo />
-
-        <TodoList todos={todos} />
-      </TodoContainer>
-    </Main>
-  );
+    <Hero>
+      <div style={{height: "100vh", width: "100%", background: "transparent"}}></div>
+      <div style={{height: "100vh", width: "100%", overflowY: 'auto'}}>
+        <Main>
+          <Typography mt={5} variant="h2">
+            What needs to be done?
+          </Typography>
+          <App />
+        </Main>
+      </div>
+    </Hero>
+  )
 }
 
 export default Home;

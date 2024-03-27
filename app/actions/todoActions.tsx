@@ -10,16 +10,17 @@ export async function getData() {
       title: true,
       id: true,
       isCompleted: true,
+      createdAt: true,
     },
     orderBy: {
-      createdAt: "desc"
+      createdAt: "asc",
     }
   })
 
   revalidatePath("/");
   
   return data;  
-}
+};
 
 export async function createTodo(formData: FormData) {
   const input = formData.get("input") as string;
@@ -32,6 +33,7 @@ export async function createTodo(formData: FormData) {
         title: input,
       }
     })
+
   revalidatePath("/");
 };
 
@@ -45,6 +47,7 @@ export async function changeStatus(todo: Todo) {
       isCompleted: !todo.isCompleted
     }
   })
+
   revalidatePath("/");
 };
 
@@ -64,6 +67,43 @@ export async function editTodo(newTitle: string | null, todoId: string) {
   revalidatePath("/");
 };
 
+export async function toggleAll() {
+  const todos = await prisma.todo.findMany({
+    select: {
+      title: true,
+      id: true,
+      isCompleted: true,
+    },
+    orderBy: {
+      createdAt: "asc"
+    }
+  });
+
+  const isAllCompleted = todos.every(todo => todo.isCompleted)
+
+    if (isAllCompleted) {
+      await prisma.todo.updateMany({
+        where: {
+          isCompleted: true,
+        },
+        data: {
+          isCompleted: false,
+        }
+      })
+    } else {
+      await prisma.todo.updateMany({
+        where: {
+          isCompleted: false
+        },
+        data: {
+          isCompleted: true,
+        }
+      })
+    }
+
+  revalidatePath("/");
+};
+
 export async function deleteTodo(todoId: string) {
   await prisma.todo.delete({
     where: {
@@ -74,3 +114,12 @@ export async function deleteTodo(todoId: string) {
   revalidatePath("/"); 
 };
 
+export async function clearCompleted() {
+  await prisma.todo.deleteMany({
+    where: {
+      isCompleted: true
+    },
+  })
+
+  revalidatePath("/");
+};

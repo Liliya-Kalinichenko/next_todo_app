@@ -1,7 +1,7 @@
-import { Colors } from '@/app/theme/colors'
+import React from 'react';
+import { Colors } from '@/app/theme/colors';
 import EditIcon from '@mui/icons-material/Edit';
-import { IconButton } from '@mui/material'
-import React from 'react'
+import { IconButton } from '@mui/material';
 
 interface Props {
   onClick: () => void;
@@ -12,13 +12,13 @@ const EditButton: React.FC<Props> = ({ onClick }) => {
   return (
     <IconButton  
       onClick={onClick} 
-      type='button' 
+      type="button" 
       aria-label="edit"
-      sx={{ color: Colors.light}}
+      sx={{ color: Colors.light, borderRadius: '10px'}}
     >
       <EditIcon />
     </IconButton>
-  )
-}
+  );
+};
 
-export default EditButton
+export default EditButton;

@@ -1,21 +1,23 @@
-import { Colors } from '@/app/theme/colors'
-import { Button } from '@mui/material'
-import React from 'react'
+import { Colors } from '@/app/theme/colors';
+import { Button, CircularProgress } from '@mui/material';
+import React from 'react';
+import { useFormStatus } from 'react-dom';
 
-function AddButton() {
+
+const AddButton = () => {
+  const { pending } = useFormStatus();
+  
   return (
     <Button 
       type="submit" 
       variant="contained"
-      className="button" 
-      sx={{
-        // background: Colors.btnBackground,
-        color: Colors.light,
-      }}
+      className="button"
+      disabled={pending} 
+      sx={{color: Colors.light}}
     >
-      Add
+      {pending ? <CircularProgress size={30} /> : 'Add'}
     </Button>
-  )
-}
+  );
+};
 
-export default AddButton
+export default AddButton;

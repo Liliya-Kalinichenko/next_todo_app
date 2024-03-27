@@ -1,9 +1,7 @@
-import { deleteTodo } from '@/app/actions/todoActions';
+import React from 'react';
 import { Colors } from '@/app/theme/colors';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-import React from 'react';
 
 interface Props {
   onClick: () => void
@@ -17,11 +15,12 @@ const DeleteButton: React.FC<Props> = ({ onClick }) => {
       aria-label="delete"
       sx={{
         color: Colors.light,
+        borderRadius: '10px',
       }}
     >
       <DeleteIcon />
     </IconButton>
-  )
-}
+  );
+};
 
-export default DeleteButton
+export default DeleteButton;

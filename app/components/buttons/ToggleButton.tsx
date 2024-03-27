@@ -1,5 +1,4 @@
-import React from 'react'
-
+import React from 'react';
 import CheckCircleTwoToneIcon from '@mui/icons-material/CheckCircleTwoTone';
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import { Checkbox } from '@mui/material';
@@ -19,7 +18,7 @@ const ToggleButton: React.FC<Props> = ({ onClick, isCompleted }) => {
       disableRipple
       onChange={onClick}
     />
-  )
-}
+  );
+};
 
-export default ToggleButton
+export default ToggleButton;

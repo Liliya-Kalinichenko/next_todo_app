@@ -1,4 +1,5 @@
 'use client';
+
 import createCache from '@emotion/cache';
 import { useServerInsertedHTML } from 'next/navigation';
 import { CacheProvider, ThemeProvider } from '@emotion/react';
@@ -60,7 +61,6 @@ export default function ThemeRegistry({ children } : {children: React.ReactNode}
       </ThemeProvider>
     </CacheProvider>
   );
-
-  }
+}
 
 

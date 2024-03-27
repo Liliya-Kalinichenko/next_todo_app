@@ -2,8 +2,8 @@
 
 import { changeStatus, deleteTodo } from '@/app/actions/todoActions';
 import { Todo } from '@/app/types/Todo';
-import { Box, Checkbox, CircularProgress, IconButton, ListItem, ListItemText } from '@mui/material';
-import React, { useState } from 'react'
+import { Box, CircularProgress, ListItem} from '@mui/material';
+import React, { RefObject, useState } from 'react';
 import EditTodo from './EditTodo';
 import { Colors } from '../theme/colors';
 import EditButton from './buttons/EditButton';
@@ -13,25 +13,23 @@ import TodoTitle from './TodoTitle';
 
 interface Props {
   todo: Todo;
+  listItemRef: RefObject<HTMLLIElement>;  
 }
 
-const TodoItem: React.FC<Props> = ({ todo }) => {
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted);
+const TodoItem: React.FC<Props> = ({todo, listItemRef}) => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const { id, title } = todo;
-
+  const { id, title, isCompleted } = todo;
 
   const handleToggle = () => {
     changeStatus(todo);
-    setIsCompleted(!isCompleted);
-  }
+  };
 
   const handleEditClick = () => {
-  setIsEditMode(prev => !prev); 
-}
+    setIsEditMode(prev => !prev); 
+  };
 
-const handleDelete = async() => {
+  const handleDelete = () => {
     setIsLoading(true);
     setTimeout(async() => {
       try {
@@ -42,15 +40,20 @@ const handleDelete = async() => {
         setIsLoading(false)
       }
 
-    }, 500)
-}
+    }, 200)
+  };
+
   return (
-    <ListItem sx={{
-      border: `1px solid ${Colors.primary}`,
-      borderRadius: '15px',
-      display: 'flex',
-      justifyContent: 'center',
-    }}>
+    <ListItem
+      ref={listItemRef}
+      className="todo" 
+      sx={{
+        border: `1px solid ${Colors.primary}`,
+        borderRadius: '15px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
       {isLoading && <CircularProgress sx={{width: '100%', position: 'absolute'}} />}
 
       <Box 
@@ -59,7 +62,7 @@ const handleDelete = async() => {
           alignItems: 'center', 
           justifyContent: 'space-between',
           width: '100%',
-          opacity: isLoading ? 0.1 : 1,
+          opacity: isLoading ? 0.5 : 1,
         }}>
         <ToggleButton onClick={handleToggle} isCompleted={isCompleted} />
 
@@ -74,6 +77,7 @@ const handleDelete = async() => {
         <DeleteButton onClick={handleDelete} />
       </Box>
     </ListItem>
+      
   );
 };
 

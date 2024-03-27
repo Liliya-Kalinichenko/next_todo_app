@@ -21,12 +21,12 @@ const EditTodo: React.FC<Props> = ({todo, setIsEditMode, setIsLoading}) => {
     setTimeout(async() => {
       try {
         await editTodo(newTitle, id);
-        form.current?.reset()
-        setIsEditMode(false)
+        form.current?.reset();
+        setIsEditMode(false);
       } catch (e) {
-        console.error(e)
+        console.error(e);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
 
     }, 500)
@@ -41,10 +41,10 @@ const EditTodo: React.FC<Props> = ({todo, setIsEditMode, setIsLoading}) => {
           await editTodo(formField.current.value, id)          
         }
       } catch (e) {
-        console.error(e)
+        console.error(e);
       } finally {
-          setIsEditMode(false)
-          setIsLoading(false)
+          setIsEditMode(false);
+          setIsLoading(false);
         }
       }, 500)
   }

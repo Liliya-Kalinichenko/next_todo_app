@@ -1,17 +1,14 @@
 'use client';
-import { Container, styled } from '@mui/material';
+
+import { styled } from '@mui/material';
 import React, { ReactNode } from 'react';
 
-const MainContainer = styled(Container, {
+const MainContainer = styled("div", {
   name: 'MainContainer',
   slot: 'Root'
-})(({}) => ({
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '4rem',
-  alignItems: 'center',
-}))
+  })(({}) => ({
+    position: 'relative',
+  }))
 
 function Main({children}: {children: ReactNode}) {
   return (

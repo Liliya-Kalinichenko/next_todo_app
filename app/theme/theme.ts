@@ -10,8 +10,8 @@ import { Colors } from './colors';
 
 declare module '@mui/material/styles' {
   interface Components {
-    MainContainer:{},
-    TodoContainer: {},
+    AppContainer: {},
+    MainContainer: {}
   }
 }
 
@@ -26,11 +26,11 @@ export const theme = createTheme({
     mode: 'dark',
     primary: {
       main: Colors.primary,
-      dark: '#333333',
+      dark: Colors.dark,
     },
     divider: 'inherit',
     background: {
-      default: '#f68084',
+      default: Colors.background,
       paper: '',
     },
     text: {
@@ -42,8 +42,18 @@ export const theme = createTheme({
     fontFamily: roboto.style.fontFamily
   },
   components: {
-    MainContainer: {},
-    TodoContainer: {},
+    MainContainer: {
+      styleOverrides: {
+        root: {
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '2rem',
+          alignItems: 'center',
+        }
+      }
+    },
+    AppContainer: {},
     MuiTypography: {
       variants: [
         {
@@ -52,9 +62,8 @@ export const theme = createTheme({
             background: Colors.h1, 
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            fontSize: "5rem",
-            backgroundSize: "200% auto",
-            
+            fontSize: "6rem",
+            backgroundSize: "200% auto",            
           },
         },
       ],

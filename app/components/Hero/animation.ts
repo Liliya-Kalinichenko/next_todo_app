@@ -3,16 +3,30 @@ import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const introLetters = (className: string) => {
+export const introLetters = (className: string ) => {
   const tl = gsap.timeline();
 
   tl.to(className, {
       y: 0,
       opacity: 1,
       duration: 1,
+      delay: 0.5,
       ease: "power2.inOut",
       stagger: 0.1,
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    })
+
+  return tl;
+};
+
+export const introButton= (button: React.RefObject<HTMLButtonElement>) => {
+  const tl = gsap.timeline();
+
+  tl.to(button.current, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      ease: "power2.inOut",
     })
 
   return tl;
